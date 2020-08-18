@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+ceylonfarmer.com	TRUE	/	FALSE	1999999999	language	en-gb
+ceylonfarmer.com	TRUE	/	FALSE	1999999999	currency	LKR
+ceylonfarmer.com	TRUE	/	FALSE	1999999999	OCSESSID	a171d20a41158e38d099ef63b3
+
