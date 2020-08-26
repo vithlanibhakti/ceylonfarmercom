@@ -3,17 +3,19 @@ session_start();
 include('config.php');
 if(isset($_POST['submit'])) 
  {
-        $UserName =mysqli_real_escape_string($con, $_POST['UserName']);
+        $email =mysqli_real_escape_string($con, $_POST['UserName']);
         $Password = mysqli_real_escape_string($con,$_POST['Password']);
 	//	ECHO $phn,$Password;
-	$fetch="SELECT * FROM users WHERE email='$UserName' AND Password='$Password' ";
+	$fetch="SELECT * FROM users WHERE email='$email' AND Password='$Password' ";
 	 $result = mysqli_query($con,$fetch);
 	$count=mysqli_num_rows($result);
-      echo $count;
+    //echo $count;
 	 if ($count != "")
 	 {
-	 $_SESSION['UserName']=$UserName;
-   header("Location: home.php");
+	 $_SESSION['email']=$email;
+	 
+ //echo "<script>alert('$email');</script>";
+   header("Location: shipping.php");
 	 }
 	 else{
 	 header("Location: login.php");}

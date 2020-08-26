@@ -1,103 +1,15 @@
 <html lang="en">
-
 <head>
-
 <meta charset="utf-8">
-<style>
-                        * {
-                            box-sizing: border-box;
-                        }
-                        
-                        body {
-                            font-family: Verdana, sans-serif;
-                        }
-                        
-                        .mySlides {
-                            display: none;
-                        }
-                        
-                        img {
-                            vertical-align: middle;
-                        }
-                        /* Slideshow container */
-                        
-                        .slideshow-container {
-                            max-width: 1000px;
-                            position: relative;
-                            margin: auto;
-                        }
-                        /* Caption text */
-                        
-                        .text {
-                            color: #f2f2f2;
-                            font-size: 15px;
-                            padding: 8px 12px;
-                            position: absolute;
-                            bottom: 8px;
-                            width: 100%;
-                            text-align: center;
-                        }
-                        /* Number text (1/3 etc) */
-                        
-                        .numbertext {
-                            color: #f2f2f2;
-                            font-size: 12px;
-                            padding: 8px 12px;
-                            position: absolute;
-                            top: 0;
-                        }
-                        /* The dots/bullets/indicators */
-                        
-                        .dot {
-                            height: 15px;
-                            width: 15px;
-                            margin: 0 2px;
-                            background-color: #bbb;
-                            border-radius: 50%;
-                            display: inline-block;
-                            transition: background-color 0.6s ease;
-                        }
-                        
-                        .active {
-                            background-color: #717171;
-                        }
-                        /* Fading animation */
-                        
-                        .fade {
-                            -webkit-animation-name: fade;
-                            -webkit-animation-duration: 1.5s;
-                            animation-name: fade;
-                            animation-duration: 1.5s;
-                        }
-                        
-                        @-webkit-keyframes fade {
-                            from {
-                                opacity: .4
-                            }
-                            to {
-                                opacity: 1
-                            }
-                        }
-                        
-                        @keyframes fade {
-                            from {
-                                opacity: .4
-                            }
-                            to {
-                                opacity: 1
-                            }
-                        }
-                        /* On smaller screens, decrease text size */
-                        
-                        @media only screen and (max-width: 300px) {
-                            .text {
-                                font-size: 11px
-                            }
-                        }
-                    </style>
-      </head>          
+<link rel="stylesheet" href="/ceylonfarmercom/ceylonfarmercom/client/assets/css/slide.css">
+      </head>
 <body>
-    <?php  include ("header.php");?>
+    <?php 
+     include ("header.php");
+session_start();
+//echo "<script>alert('$email');</script>"; 
+     ?>
+
         <div class="main-content-holder">
             <div>
                     <div class="slideshow-container">
@@ -188,36 +100,30 @@
                             </div>
                             <div class="product-container">
                                 <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
-                                    <div class="col" style="padding-bottom: 15px;">
+                                <?php 
+                        include 'config.php';
+                        
+                                    $result1 = mysqli_query($con,"SELECT  `p_id`,`p_name`, `p_image` FROM `adminproducts` LIMIT 6");        
+                                    while($row1 = mysqli_fetch_array($result1)) 
+                                    {
+                                        $p_name= $row1['p_name'];   
+                                        $p_id= $row1['p_id'];   
+                                        $p_image= $row1['p_image'];   
+                                        $result2 = mysqli_query($con,"SELECT  `product_id`, `sell_price` FROM `admin_product_to_store` where `product_id` = $p_id  LIMIT 6");                                    
+                                        while($row2 = mysqli_fetch_array($result2)) 
+                                        {
+                                            $sell_price= $row2['sell_price'];   
+                                            //  echo $sell_price."<br>"; 
+                                              $product_id= $row2['product_id'];   
+                                          // echo $product_id."<br>"; 
+                                        ?>
+
+
+<div class="col" style="padding-bottom: 15px;">
                                         <div class="product-card-container">
                                             <div class="row">
-                                                <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic14290.jpg">
-                                                    <div class="product-card-promotion-badge">
-                                                        <div class="product-card-promotion-badge-nexus">
-                                                            <!-- <img class="img-fluid" src="/static/media/Nexus.0af60875.png"> -->
-                                                        </div>
-                                                        <div class="product-card-promotion-badge-single-line">
-                                                            <div class="product-card-promotion-badge-percentage">20</div>
-                                                            <div>
-                                                                <div class="product-card-promotion-badge-suffix">%</div>
-                                                                <div class="product-card-promotion-badge-suffix">Off</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-card-name col-md-12">Krest Chicken Sausages S/Less 500g</div>
-                                                <div class="product-card-price-container col-md-12">
-                                                    <div class="product-card-original-price">Rs 520.00</div>
-                                                    <div class="product-card-final-price">Rs 416.00 / Unit</div>
-                                                </div>
-                                                <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-bottom: 15px;">
-                                        <div class="product-card-container">
-                                            <div class="row">
-                                                <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic88823.jpg">
+                                                <div class="product-card-image-container col-md-12">
+                                                <img class="img-fluid" src="<?php echo $p_image; ?>">
                                                     <div class="product-card-promotion-badge">
                                                         <div class="product-card-promotion-badge-nexus">
                                                             <!-- <img class="img-fluid" src="/static/media/Nexus.0af60875.png"> -->
@@ -231,97 +137,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="product-card-name col-md-12">Prima Instant Noodles 430g</div>
+                                                <div class="product-card-name col-md-12"><?php echo $p_name; ?></div>
                                                 <div class="product-card-price-container col-md-12">
-                                                    <div class="product-card-original-price">Rs 195.00</div>
+                                                    <div class="product-card-original-price"><?php echo $sell_price; ?></div>
                                                     <div class="product-card-final-price">Rs 138.00 / Unit</div>
                                                 </div>
                                                 <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col" style="padding-bottom: 15px;">
-                                        <div class="product-card-container">
-                                            <div class="row">
-                                                <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic117689.jpg">
-                                                    <div class="product-card-promotion-badge">
-                                                        <div class="product-card-promotion-badge-nexus">
-                                                            <!-- <img class="img-fluid" src="/static/media/Nexus.0af60875.png"> -->
-                                                        </div>
-                                                        <div class="product-card-promotion-badge-single-line">
-                                                            <div class="product-card-promotion-badge-percentage">30</div>
-                                                            <div>
-                                                                <div class="product-card-promotion-badge-suffix">%</div>
-                                                                <div class="product-card-promotion-badge-suffix">Off</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-card-name col-md-12">Dove Shampo Oxygen Moisture 180ml</div>
-                                                <div class="product-card-price-container col-md-12">
-                                                    <div class="product-card-original-price">Rs 300.00</div>
-                                                    <div class="product-card-final-price">Rs 210.00 / Unit</div>
-                                                </div>
-                                                <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-bottom: 15px;">
-                                        <div class="product-card-container">
-                                            <div class="row">
-                                                <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic50027.jpg">
-                                                    <div class="product-card-promotion-badge">
-                                                        <div class="product-card-promotion-badge-nexus">
-                                                            <!-- <img class="img-fluid" src="/static/media/Nexus.0af60875.png"> -->
-                                                        </div>
-                                                        <div class="product-card-promotion-badge-single-line">
-                                                            <div class="product-card-promotion-badge-percentage">30</div>
-                                                            <div>
-                                                                <div class="product-card-promotion-badge-suffix">%</div>
-                                                                <div class="product-card-promotion-badge-suffix">Off</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-card-name col-md-12">Knorr Seasoning Cube 60g</div>
-                                                <div class="product-card-price-container col-md-12">
-                                                    <div class="product-card-original-price">Rs 125.00</div>
-                                                    <div class="product-card-final-price">Rs 87.00 / Unit</div>
-                                                </div>
-                                                <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col" style="padding-bottom: 15px;">
-                                        <div class="product-card-container">
-                                            <div class="row">
-                                                <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/Small/Default.jpg">
-                                                    <div class="product-card-promotion-badge">
-                                                        <div class="product-card-promotion-badge-nexus">
-                                                            <!-- <img class="img-fluid" src="/static/media/Nexus.0af60875.png"> -->
-                                                        </div>
-                                                        <div class="product-card-promotion-badge-single-line">
-                                                            <div class="product-card-promotion-badge-percentage">30</div>
-                                                            <div>
-                                                                <div class="product-card-promotion-badge-suffix">%</div>
-                                                                <div class="product-card-promotion-badge-suffix">Off</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-card-name col-md-12">Kotmale Faluda Flav Milk 1L</div>
-                                                <div class="product-card-price-container col-md-12">
-                                                    <div class="product-card-original-price">Rs 250.00</div>
-                                                    <div class="product-card-final-price">Rs 175.00 / Unit</div>
-                                                </div>
-                                                <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                            </div>
-                                        </div>
-                                    </div>
+
+<?php
+                                        }
+
+
+                                    }
+                        
+                        ?>
+                                    
+                                    
                                 </div>
                                 <div class="switcher-main-button-holder row">
                                     <div class="input-group">
-                                        <div class="btn-full"><button id="deals_view_all_nexus_btn" class="btn-inside  
+                                        <div class="btn-full"><button id="deals_view_all_nexus_btn" class="btn-inside
    new-btn-sm " type="button"> View All Nexus Deals</button>
                                             <div class="input-group-append">
                                                 <div class="input-group-text append"><i class="fas fa-angle-right"></i></div>
@@ -481,7 +319,9 @@
                     <div>
                         <div class="p-0 m-0 row">
                             <div class="full-width-bannner-item col-lg-6 col-md-12 col-12">
-                                <div class="slide"><img src="https://essstr.blob.core.windows.net/uiimg/BannerSections/BannerSection2A.jpg" style="width: 100%; height: 100%;"></div>
+                                <a href="vegetables.php"><div class="slide"><img src="https://essstr.blob.core.windows.net/uiimg/BannerSections/BannerSection2A.jpg" style="width: 100%; height: 100%;">
+                    </a>
+                            </div>
                             </div>
                             <div class="bannerSpace col-12">&nbsp;</div>
                             <div class="full-width-bannner-item col-lg-6 col-md-12 col-12">
@@ -610,61 +450,68 @@
                         </div>
                     </div>
                     <?php
+                    $count=0;
+                    $image=[];
+                    
+                    $c=0;
+                    $id=[];
 include 'config.php';
-$result = mysqli_query($con,"SELECT category_image FROM categorys LIMIT 6;");
+$result = mysqli_query($con,"SELECT category_image,category_id FROM categorys LIMIT 6;");
 			while($row = mysqli_fetch_array($result)) {
             $img= $row['category_image'];
-            
-//echo $row[0]."<br>"; 
-$items = array();
+            $idc= $row['category_id'];
+            //echo $idc;
+$image[$count]=$img;
+$count = $count +1;
 
- $input_array[] = $img;
+$id[$c]=$idc;
+$c = $c +1;
 
-//print_r($items);
+                        }
+                        $image0= $image[0];
+                        $image1= $image[1];
+                        $image2= $image[2];
+                        $image3= $image[3];
+                        $image4= $image[4];
+                        $image5= $image[5];
 
-// Array ( 
-//     [0] => Array ( [0] => ) 
-//     [1] => Array ( [1] => client/img/vege.png ) 
-//     [2] => Array ( [2] => client/img/juice.png ) 
-//     [3] => Array ( [3] => client/img/home.png ) 
-//     [4] => Array ( [4] => client/img/meat.png ) 
-//     )
+                        $id0= $id[0];
+                        $id1= $id[1];
+                        $id2= $id[2];
+                        $id3= $id[3];
+                        $id4= $id[4];
+                        $id5= $id[5];
 
-
-            }
-            $List = implode(', ', $input_array); 
-  
-// Display the comma separated list 
-//print_r($List); 
-//print_r (explode(",",$List));
-//echo $List[0][1];
-
-
-        //     foreach($input_array as $key => $value){
-        //         $newName = "array".($key+1);
-        //         $$newName = $value;
-        //         echo $key+1;
-        // }
-            
-           // print_r(array_chunk($input_array, 1, true));
-			?>
+                        // $image6= $image[6];
+                  //      echo $image0,$image1,$image2,$image3,$image4,$image5;
+                //echo $id0,$id1,$id2,$id3,$id4,$id5;
+                                    ?>
                     <div class="col">
                         <div class="wrapper">
-                            <div class="tile1-cat" style="background: url(&quot;https://essstr.blob.core.windows.net/uiimg/ShopByCategory/ShopByCategory1.jpg&quot;);"></div>
+                        <!-- <div class="tile1-cat" style="background: url(&quot;<?php echo $image0; ?>&quot;);"></div> -->
+                        <div class="tile1-cat" style="background: url(&quot;<?php echo $image0; ?>&quot;);">
+    <a href='dynamic.php?id=<?php echo $id0;?>' style="display:block;width:100px;height:20px;">&nbsp;</a>
+</div>
+
                             <div class="">
                                 <div class="slide">
-                                
-                                    <img src="<?php echo $img; ?>" style="width: 100%; height: auto;">
+                                <a href='dynamic.php?id=<?php echo $id1;?>'><img src="<?php echo $image1; ?>"  style="width: 100%; height: auto;">
                             </div>
-                            </div>
+                            </div></a>
                             <div class="nested ">
-                                <div class="to-bottom tile3-cat"><img src="https://essstr.blob.core.windows.net/uiimg/ShopByCategory/ShopByCategory3.jpg" style="width: 100%; height: auto;"></div>
-                                <div class="to-bottom tile4-cat"><img src="https://essstr.blob.core.windows.net/uiimg/ShopByCategory/ShopByCategory4.jpg" style="width: 100%; height: auto;"></div>
-                            </div>
+                                <div class="to-bottom tile3-cat">
+                                <a href='dynamic.php?id=<?php echo $id2;?>'><img src="<?php echo $image2; ?>"  style="width: 100%; height: auto;">
+                                </div></a>
+                                <div class="to-bottom tile4-cat">
+                                <a href='dynamic.php?id=<?php echo $id3;?>'><img src="<?php echo $image3; ?>"  style="width: 100%; height: auto;"></div>
+                            </div></a>
                             <div class="nested">
-                                <div class="to-bottom tile5-cat"><img src="https://essstr.blob.core.windows.net/uiimg/ShopByCategory/ShopByCategory5.jpg" style="width: 100%; height: auto;"></div>
-                                <div class="to-bottom tile6-cat"><img src="https://essstr.blob.core.windows.net/uiimg/ShopByCategory/ShopByCategory6.jpg" style="width: 100%; height: auto;"></div>
-                            </div>
+                                <div class="to-bottom tile5-cat">
+                                <a href='dynamic.php?id=<?php echo $id4;?>'><img src="<?php echo $image4; ?>"  style="width: 100%; height: auto;"></a></div>
+                                
+                                <div class="to-bottom tile6-cat">
+                                <a href='dynamic.php?id=<?php echo $id5;?>'><img src="<?php echo $image5; ?>"  style="width: 100%; height: auto;"></a></div>
+                                </div>
                         </div>
                     </div>
                     <div class="row" style="margin: 0px;">
@@ -719,7 +566,7 @@ $(document).ready(function() {
     }).change();
 
 	$('#category').on('change', function() {
-        
+
 			var category_id = this.value;
 
 debugger;
@@ -735,8 +582,8 @@ debugger;
 					$("#sub_category").html(dataResult);
          		}
 			});
-		
-		
+
+
 	});
 });
 </script>

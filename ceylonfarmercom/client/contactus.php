@@ -87,7 +87,7 @@
             <button class="new-btn  new-btn-light-gray   no-left-radius " type="button" id = "button2">
                  <i class="fas fa-frown"> </i> Complaints</button></div>
                         </div><br><br>
-                        <form id="contact_form" name="contact_form">
+                        <form id="contact_form" name="contact_form" method="POST" actipm>
     <div  id = "mytable1">
          <br/>
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 row" style="margin-left: 0.3rem;">

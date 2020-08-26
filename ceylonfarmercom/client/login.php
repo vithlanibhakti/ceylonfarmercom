@@ -56,7 +56,8 @@
                                 <div class="form-group col"><label for="Password" class="black">Password</label>
                                     <div class="input-group" style="margin-bottom: 0px;">
                                     <input id="Password" name="Password" placeholder="Password" type="password" class="form-control set-height-55" required>
-                                    <i id="pw-visible-icon" class="fas fa-eye-slash"></i></div>
+                                    <a href="javascript:myFunction3();">
+                                         <i id="pw-visible-icon" class="fas fa-eye-slash"></i></a></div>
                                     <span class="form-text text-muted col d-none">Password is required.</span>
                                     <span class="form-text forget-pwd">Forgot Password?</span>
                                 </div>
@@ -73,7 +74,8 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend set-height-55" style="">
                                             <div class="input-group-text flag-drop-custom">
-                                                <div class="flag-select "><button class="flag-select__btn" id="select_flag_button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select_flag_button" style="font-size: 16px;"><span class="flag-select__option flag-select__option--placeholder"><img class="flag-select__option__icon" src="/static/media/lk.d5cf9401.svg" alt="LK"><span class="flag-select__option__label">Sri Lanka</span></span></button></div>
+                                                <div class="flag-select ">
+                                                    <button class="flag-select__btn" id="select_flag_button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="select_flag_button" style="font-size: 16px;"><span class="flag-select__option flag-select__option--placeholder"><img class="flag-select__option__icon" src="/static/media/lk.d5cf9401.svg" alt="LK"><span class="flag-select__option__label">Sri Lanka</span></span></button></div>
                                             </div>
                                             <li class="custom-border"></li>
                                         </div><input name="MobileNumber" placeholder="07XXXXXXXX" type="text" autocomplete="off" class="form-control right-margin-15 set-height-55 no-left-radius no-left-border" maxlength="10" value=""><button class="new-btn  
@@ -86,7 +88,8 @@
                                         <div class="col-lg-6"><input disabled="" autocomplete="off" maxlength="4" minlength="4" name="OTPNumber" placeholder="OTP Number" type="text" class="form-control right-margin-15 set-height-55" style="margin-bottom: 10px;">
                                             <div>
                                                 <div></div>
-                                            </div><span class="form-text text-muted col-md-12 col-12 d-none">OTP is required</span></div>
+                                            </div>
+                                            <span class="form-text text-muted col-md-12 col-12 d-none">OTP is required</span></div>
                                         <div class="col-lg-6"><button class="new-btn new-btn-secondary " type="button" disabled=""> Submit</button></div>
                                     </div>
                                 </div>
@@ -97,3 +100,15 @@
 </body>
 
 </html>
+
+<script>
+function myFunction3() {
+  var x = document.getElementById("Password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+
+}
+</script>
