@@ -87,6 +87,7 @@ die("Query Failed!".mysqli_error().$result);
 while($row=mysqli_fetch_assoc($result))
 	{
 $method=$row['method'];
+$city=$row['city'];
 //echo "<script>alert('$id')</script>"; 
         }
     }
@@ -110,13 +111,23 @@ $method=$row['method'];
                         }
                         ?></div>
                         <div class="nav-item nav-item-divider col-md-auto col-12"><i class="fas fa-map-marker-alt"></i>Store Location
-                            <div class="upper-nav-item-dropdown-container">Dehiwala</div>
+                            <div class="upper-nav-item-dropdown-container">
+                            <?php if($email == 'guest')
+                        {
+                            echo "delivery"; 
+                        }
+                        else
+                        {
+                            echo $city;
+
+                        }
+                        ?>
+
+                            </div>
                         </div>
                         <div class="nav-item nav-item-divider col-md-auto col-12"><i class="fas fa-truck"></i>Shipping Method
                             <div class="upper-nav-item-dropdown-container">
-                                
-
-                            <?php if($email == 'guest')
+                       <?php if($email == 'guest')
                         {
                             echo "delivery"; 
                         }

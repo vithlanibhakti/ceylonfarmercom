@@ -94,16 +94,21 @@ session_start();
                     <div class="all-container">
                         <div class="switcher-container col-md-10 col-12 offset-md-1">
                             <div class="switcher">
-                                <div class="switcher-controls-container"><i class="fas fa-chevron-left"></i>
+                                <div class="switcher-controls-container">
+                                <button type="submit" class="btn btn-success ClickCheck" id="Create " name="but_prev"> <i class="fa fa-arrow-left"></i></button>
+
                                     <div class="switcher-control-nexus switcher-control-active">Nexus Deals</div>
-                                    <div class="switcher-control-keells">GIT Lanka Deals</div><i class="fas fa-chevron-right"></i></div>
+                                    <div class="switcher-control-keells">GIT Lanka Deals</div>
+                                    <button type="submit" class="btn btn-success ClickCheck" id="Create " name="but_prev"> <i class="fa fa-arrow-right"></i></button>
+
+                                   </div>
                             </div>
                             <div class="product-container">
                                 <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
                                 <?php 
                         include 'config.php';
                         
-                                    $result1 = mysqli_query($con,"SELECT  `p_id`,`p_name`, `p_image` FROM `adminproducts` LIMIT 6");        
+                                    $result1 = mysqli_query($con,"SELECT  `p_id`,`p_name`, `p_image` FROM `adminproducts` LIMIT 0,6");        
                                     while($row1 = mysqli_fetch_array($result1)) 
                                     {
                                         $p_name= $row1['p_name'];   
@@ -115,11 +120,10 @@ session_start();
                                             $sell_price= $row2['sell_price'];   
                                             //  echo $sell_price."<br>"; 
                                               $product_id= $row2['product_id'];   
-                                          // echo $product_id."<br>"; 
+                                        
+                                              // echo $product_id."<br>"; 
                                         ?>
-
-
-<div class="col" style="padding-bottom: 15px;">
+        <div class="col" style="padding-bottom: 15px;">
                                         <div class="product-card-container">
                                             <div class="row">
                                                 <div class="product-card-image-container col-md-12">
