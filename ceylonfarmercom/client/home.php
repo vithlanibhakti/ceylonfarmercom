@@ -188,66 +188,41 @@ session_start();
                             <div class="row" style="margin: 0px; padding-bottom: 1.5625rem;">
                                 <div class="col-md-10 col-12 offset-md-1">
                                     <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
+                                    <?php 
+                        include 'config.php';
+                        
+                                    $result1 = mysqli_query($con,"SELECT  `p_id`,`p_name`, `p_image` FROM `bestsellers` LIMIT 0,6");        
+                                    while($row1 = mysqli_fetch_array($result1)) 
+                                    {
+                                        $p_name= $row1['p_name'];   
+                                        $p_id= $row1['p_id'];   
+                                        $p_image= $row1['p_image'];   
+                                        $result2 = mysqli_query($con,"SELECT  `product_id`, `sell_price` FROM `bestsellers_product` where `product_id` = $p_id  LIMIT 6");                                    
+                                        while($row2 = mysqli_fetch_array($result2)) 
+                                        {
+                                            $sell_price= $row2['sell_price'];   
+                                            //  echo $sell_price."<br>"; 
+                                              $product_id= $row2['product_id'];   
+                                        
+                                              // echo $product_id."<br>"; 
+                                        ?>
+
+
                                         <div class="col" style="padding-bottom: 15px;">
                                             <div class="product-card-container">
                                                 <div class="row">
-                                                    <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic951015.jpg"></div>
-                                                    <div class="product-card-name col-md-12">Top Crust Bread</div>
+                                                    <div class="product-card-image-container col-md-12">
+                                                    <img class="img-fluid" src="<?php  echo $p_image; ?>"></div>
+                                                    <div class="product-card-name col-md-12"><?php  echo $p_name; ?></div>
                                                     <div class="product-card-price-container col-md-12">
-                                                        <div class="product-card-final-price">Rs 59.00 / Unit</div>
+                                                        <div class="product-card-final-price"><?php  echo $sell_price; ?></div>
                                                     </div>
                                                     <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col" style="padding-bottom: 15px;">
-                                            <div class="product-card-container">
-                                                <div class="row">
-                                                    <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic952003.jpg"></div>
-                                                    <div class="product-card-name col-md-12">GIT Lanka Dinner Bun 4S</div>
-                                                    <div class="product-card-price-container col-md-12">
-                                                        <div class="product-card-final-price">Rs 55.00 / Unit</div>
-                                                    </div>
-                                                    <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col" style="padding-bottom: 15px;">
-                                            <div class="product-card-container">
-                                                <div class="row">
-                                                    <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic951009.jpg"></div>
-                                                    <div class="product-card-name col-md-12">GIT Lanka Sandwich Bread 450g</div>
-                                                    <div class="product-card-price-container col-md-12">
-                                                        <div class="product-card-final-price">Rs 130.00 / Unit</div>
-                                                    </div>
-                                                    <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col" style="padding-bottom: 15px;">
-                                            <div class="product-card-container">
-                                                <div class="row">
-                                                    <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic951017.jpg"></div>
-                                                    <div class="product-card-name col-md-12">GIT Lanka Kurakkan Bread 200g</div>
-                                                    <div class="product-card-price-container col-md-12">
-                                                        <div class="product-card-final-price">Rs 80.00 / Unit</div>
-                                                    </div>
-                                                    <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col" style="padding-bottom: 15px;">
-                                            <div class="product-card-container">
-                                                <div class="row">
-                                                    <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic951008.jpg"></div>
-                                                    <div class="product-card-name col-md-12">GIT Lanka Kurakkan Bread 400g</div>
-                                                    <div class="product-card-price-container col-md-12">
-                                                        <div class="product-card-final-price">Rs 150.00 / Unit</div>
-                                                    </div>
-                                                    <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       <?php }}
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -344,104 +319,39 @@ session_start();
                     </div>
                     <div class="col-md-10 col-12 offset-md-1">
                         <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
-                            <div class="col" style="padding-bottom: 15px;">
+                        <?php 
+                        include 'config.php';
+                        
+                                    $result1 = mysqli_query($con,"SELECT  `p_id`,`p_name`, `p_image` FROM `featureproducts` LIMIT 0,8");        
+                                    while($row1 = mysqli_fetch_array($result1)) 
+                                    {
+                                        $p_name= $row1['p_name'];   
+                                        $p_id= $row1['p_id'];   
+                                        $p_image= $row1['p_image'];   
+                                        $result2 = mysqli_query($con,"SELECT  `product_id`, `sell_price` FROM `feature_product_to_storeayments` where `product_id` = $p_id  LIMIT 0,8");                                    
+                                        while($row2 = mysqli_fetch_array($result2)) 
+                                        {
+                                            $sell_price= $row2['sell_price'];   
+                                            //  echo $sell_price."<br>"; 
+                                              $product_id= $row2['product_id'];   
+                                        
+                                              // echo $product_id."<br>"; 
+                                        ?>
+
+<div class="col" style="padding-bottom: 15px;">
                                 <div class="product-card-container">
                                     <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic116161.jpg"></div>
-                                        <div class="product-card-name col-md-12">Eh Fit O Mango 1L</div>
+                                        <div class="product-card-image-container col-md-12">
+                                        <img class="img-fluid" src="<?php echo $p_image; ?>"></div>
+                                        <div class="product-card-name col-md-12"><?php echo $p_name; ?></div>
                                         <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-final-price">Rs 250.00 / Unit</div>
+                                            <div class="product-card-final-price"><?php echo $sell_price; ?></div>
                                         </div>
                                         <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col" style="padding-bottom: 15px;">
-                                <div class="product-card-container">
-                                    <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic14459.jpg"></div>
-                                        <div class="product-card-name col-md-12">Dettol Soap Original 70g</div>
-                                        <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-final-price">Rs 62.00 / Unit</div>
-                                        </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col" style="padding-bottom: 15px;">
-                                <div class="product-card-container">
-                                    <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic111319.jpg"></div>
-                                        <div class="product-card-name col-md-12">Durex Condoms Fetherlite 3S</div>
-                                        <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-final-price">Rs 240.00 / Unit</div>
-                                        </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col" style="padding-bottom: 15px;">
-                                <div class="product-card-container">
-                                    <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic2363.jpg"></div>
-                                        <div class="product-card-name col-md-12">Watawala Tea 200g</div>
-                                        <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-final-price">Rs 260.00 / Unit</div>
-                                        </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col" style="padding-bottom: 15px;">
-                                <div class="product-card-container">
-                                    <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic119444.jpg">
-                                            <div class="product-card-promotion-badge">
-                                                <div class="product-card-promotion-badge-nexus">
-                                                    <!-- <img class="img-fluid" src="/static/media/KeellsDeals.45f467c3.png"> -->
-                                                </div>
-                                                <div class="product-card-promotion-badge-single-line">
-                                                    <div class="product-card-promotion-badge-percentage">15</div>
-                                                    <div>
-                                                        <div class="product-card-promotion-badge-suffix">%</div>
-                                                        <div class="product-card-promotion-badge-suffix">Off</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-card-name col-md-12">Dimo Lumin Led 9W Day Pin</div>
-                                        <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-original-price">Rs 565.00</div>
-                                            <div class="product-card-final-price">Rs 480.00 / Unit</div>
-                                        </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col" style="padding-bottom: 15px;">
-                                <div class="product-card-container">
-                                    <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic110200.jpg"></div>
-                                        <div class="product-card-name col-md-12">Highland Uht F/C Milk Pkt 900ml</div>
-                                        <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-final-price">Rs 185.00 / Unit</div>
-                                        </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col" style="padding-bottom: 15px;">
-                                <div class="product-card-container">
-                                    <div class="row">
-                                        <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic110201.jpg"></div>
-                                        <div class="product-card-name col-md-12">Highland Uht F/C Milk Chutta 450ml</div>
-                                        <div class="product-card-price-container col-md-12">
-                                            <div class="product-card-final-price">Rs 100.00 / Unit</div>
-                                        </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
-                                    </div>
-                                </div>
-                            </div>
+                                        <?php }} ?>
                         </div>
                     </div>
                     <div class="row" style="margin: 0px;">

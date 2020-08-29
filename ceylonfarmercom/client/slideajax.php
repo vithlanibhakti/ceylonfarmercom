@@ -88,7 +88,8 @@
                     var p_image = data[i]['p_image'];
                     var sell_price = data[i]['sell_price'];
                    console.log(p_name);
-                   document.getElementById("demo").innerHTML = p_name;   
+                  // document.getElementById("demo").innerHTML = p_name;   
+
                     $("#emp_table").append("<div id='tr_"+i+"'></div>");
                     $("#tr_"+i).append("<div align='center'>"+p_id+"</div>");
                     $("#tr_"+i).append("<div align='left'>"+p_name+"</div>");
