@@ -1,9 +1,7 @@
 <?php 
 //session_start();
-include ("header.php");
-//session_start();
-//echo "<script>alert('$email');</script>"; 
 include("config.php");
+include("header.php");
 if(isset($_POST["add_to_cart"]))
 {
 	if(isset($_SESSION["shopping_cart"]))
@@ -19,7 +17,8 @@ if(isset($_POST["add_to_cart"]))
 				'item_quantity'		=>	$_POST["quantity"]
 			);
 			$_SESSION["shopping_cart"][$count] = $item_array;
-		}
+            echo '<script>alert("Item Added successfully")</script>';
+        }
 		else
 		{
 			echo '<script>alert("Item Already Added")</script>';
@@ -29,8 +28,7 @@ if(isset($_POST["add_to_cart"]))
 	{
 		$item_array = array(
 			'p_id'			=>	$_GET["p_id"],
-            'p_name'			=>	$_POST["hidden_name"],
-            'item_price'		=>	$_POST["hidden_price"],
+			'p_name'			=>	$_POST["hidden_name"],
 			'item_quantity'		=>	$_POST["quantity"]
 		);
 		$_SESSION["shopping_cart"][0] = $item_array;
@@ -64,13 +62,14 @@ if(isset($_GET["action"]))
 	</head>
 	<body>
 		<br />
-			<br /><br />
-			<br /><br />
-			<br /><br />			<br />
 			<br />
-            <div class="product-container">
-                        <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
-		<?php
+			<br />
+            <br /><br />
+            <div class="main-content-holder">            
+<div class="product-container">
+                                <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
+    
+			<?php
 				$query = "SELECT * FROM adminproducts ORDER BY p_id ASC ";
 				$result = mysqli_query($con, $query);
 				if(mysqli_num_rows($result) > 0)
@@ -86,23 +85,7 @@ if(isset($_GET["action"]))
                                               $product_id= $row2['product_id'];   
                                               // echo $product_id."<br>"; 
 				?>
-			<!-- <div class="col-md-4">
-				<form method="post" action="deals.php?action=add&p_id=<?php echo $row["p_id"]; ?>">
-					<div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-						<img src="<?php echo $row["p_image"]; ?>" class="img-responsive" /><br />
-
-						<h4 class="text-info"><?php echo $row["p_name"]; ?></h4>
-                        <h4 class="text-info"><?php echo $row2["sell_price"]; ?></h4>
-						<input type="text" name="quantity" value="1" class="form-control" />
-
-						<input type="hidden" name="hidden_name" value="<?php echo $row["p_name"]; ?>" />
-                        <input type="hidden" name="hidden_price" value="<?php echo $row2["sell_price"]; ?>" />
-						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
-
-					</div>
-				</form>
-            </div> -->
-            <form method="post" action="deals.php?action=add&p_id=<?php echo $row["p_id"]; ?>">
+<form method="post" action="deals.php?action=add&p_id=<?php echo $row["p_id"]; ?>">
             <div class="col" style="padding-bottom: 15px;">
                         <div class="product-card-container">
                                        <div class="row">
@@ -123,8 +106,8 @@ if(isset($_GET["action"]))
                                                 </div>
                                                 <div class="product-card-name col-md-12"><?php echo $row["p_name"]; ?></div>
                                                 <div class="product-card-price-container col-md-12">
-                                                    <div class="product-card-original-price"><?php echo $row2["sell_price"]; ?></div>
-                                                    <div class="product-card-final-price">Rs 138.00 / Unit</div>
+                                                    <div class="product-card-final-price"><?php echo $row2["sell_price"]; ?></div>
+                                                    <!-- <div class="product-card-final-price">Rs 138.00 / Unit</div> -->
                                                 </div>
                                                 <div class="product-card-button-container col-md-12">
                                                 <!-- <input type="button" onclick="sayHello()" value="Click" /> -->
@@ -137,19 +120,60 @@ if(isset($_GET["action"]))
                                         </input></div>
                                             </div>
                   	</div>
-				</form>
-            </div>
-            
-            <?php
-            
+				</form>    
+</div>
+			<?php
                     }
                 }
-				}
+                }
+                
             ?>
-                                  </div>
-                                    </div>
-
-				
-	<br />
+            </div>    
+</div>
+			<!-- <div style="clear:both"></div>
+			<br />
+			<h3>Order Details</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr>
+						<th width="40%">Item Name</th>
+						<th width="10%">Quantity</th>
+						<th width="20%">Price</th>
+						<th width="15%">Total</th>
+						<th width="5%">Action</th>
+					</tr>
+					<?php
+					if(!empty($_SESSION["shopping_cart"]))
+					{
+						$total = 0;
+						foreach($_SESSION["shopping_cart"] as $keys => $values)
+						{
+					?>
+					<tr>
+						<td><?php echo $values["item_name"]; ?></td>
+						<td><?php echo $values["item_quantity"]; ?></td>
+                        <td>$ <?php echo $values["item_price"]; ?></td>
+                        <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
+						<td><a href="deals.php?action=delete&p_id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+					</tr>
+					<?php
+							$total = $total + ($values["item_quantity"] * $values["item_price"]);
+						}
+					?>
+					<tr>
+						<td colspan="3" align="right">Total</td>
+						<td align="right">$ <?php echo number_format($total, 2); ?></td>
+						<td></td>
+					</tr>
+					<?php
+					}
+					?>
+						
+				</table>
+			</div>
+		</div>
+		</div>
+	</div>
+	<br /> -->
 	</body>
 </html>

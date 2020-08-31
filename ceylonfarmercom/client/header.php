@@ -163,7 +163,10 @@ $city=$row['state'];
                                 <a href="storelocator.php"><div class="nav-item-navbar">Stores</div></a>
                                 <a href="contactus.php"><div class="nav-item-navbar">Contact us</div></a>
                                 <a href="utilityPayment.php"><div class="nav-item-navbar nav-item-highlighted"><i class="fas fa-receipt"></i>Utility Bill Payment</div></a>
-                                <div class="nav-item-navbar cart-box"><i class="fas fa-shopping-cart"><span id="smart-checkout-count" class="badge">0</span></i> Rs. 0.00</div>
+                                <div class="nav-item-navbar cart-box">
+                                    <i class="fas fa-shopping-cart">
+                                        <span id="smart-checkout-count" class="badge">0</span>
+                                    </i> Rs. 0.00</div>
                             </div>
                         </div>
                     </div>

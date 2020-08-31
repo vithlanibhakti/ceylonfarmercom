@@ -1,9 +1,7 @@
 <?php 
 //session_start();
-include ("header.php");
-//session_start();
-//echo "<script>alert('$email');</script>"; 
 include("config.php");
+include("header.php");
 if(isset($_POST["add_to_cart"]))
 {
 	if(isset($_SESSION["shopping_cart"]))
@@ -19,7 +17,8 @@ if(isset($_POST["add_to_cart"]))
 				'item_quantity'		=>	$_POST["quantity"]
 			);
 			$_SESSION["shopping_cart"][$count] = $item_array;
-		}
+            echo '<script>alert("Item Added successfully")</script>';
+        }
 		else
 		{
 			echo '<script>alert("Item Already Added")</script>';
@@ -29,8 +28,7 @@ if(isset($_POST["add_to_cart"]))
 	{
 		$item_array = array(
 			'p_id'			=>	$_GET["p_id"],
-            'p_name'			=>	$_POST["hidden_name"],
-            'item_price'		=>	$_POST["hidden_price"],
+			'p_name'			=>	$_POST["hidden_name"],
 			'item_quantity'		=>	$_POST["quantity"]
 		);
 		$_SESSION["shopping_cart"][0] = $item_array;
@@ -47,24 +45,15 @@ if(isset($_GET["action"]))
 			{
 				unset($_SESSION["shopping_cart"][$keys]);
 				echo '<script>alert("Item Removed")</script>';
-				echo '<script>window.location="orderdetails.php"</script>';
+				echo '<script>window.location="deals.php"</script>';
 			}
 		}
 	}
 }
 
 ?>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-			<div style="clear:both"></div>
+<br><br><br><br><br><br><br><br>
+<div style="clear:both"></div>
 			<br />
 			<h3>Order Details</h3>
 			<div class="table-responsive">
@@ -105,6 +94,7 @@ if(isset($_GET["action"]))
 						
 				</table>
 			</div>
+		</div>
 		</div>
 	</div>
 	<br />
