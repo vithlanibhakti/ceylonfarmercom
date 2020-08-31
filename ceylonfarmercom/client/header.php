@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -164,13 +165,29 @@ $city=$row['state'];
                                 <a href="contactus.php"><div class="nav-item-navbar">Contact us</div></a>
                                 <a href="utilityPayment.php"><div class="nav-item-navbar nav-item-highlighted"><i class="fas fa-receipt"></i>Utility Bill Payment</div></a>
                                 <div class="nav-item-navbar cart-box">
+                                <?php
+					if(!empty($_SESSION["shopping_cart"]))
+					{
+						$total = 0;
+						foreach($_SESSION["shopping_cart"] as $keys => $values)
+						{
+					?>
+					<?php
+							$total = $total + ($values["item_quantity"] * $values["item_price"]);
+						}
+//echo number_format($total, 2); 
+					}
+					?>
+
                                     <i class="fas fa-shopping-cart">
                                         <span id="smart-checkout-count" class="badge">0</span>
-                                    </i> Rs. 0.00</div>
+                                    </i> Rs. <?php echo number_format($total, 2);  ?></div>
                             </div>
                         </div>
                     </div>
                 </div>
+						
+
                 <div class="col-md-10 offset-md-1">
                     <div class="row" style="margin: 0px;">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -644,3 +661,5 @@ debugger;
 
 
 </script>
+
+
