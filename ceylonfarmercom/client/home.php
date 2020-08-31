@@ -6,7 +6,7 @@
 <body>
     <?php 
      include ("header.php");
-session_start();
+//session_start();
 //echo "<script>alert('$email');</script>"; 
      ?>
 
@@ -86,7 +86,8 @@ session_start();
                             </div>
                             <div class="bannerSpace col-12">&nbsp;</div>
                             <div class="full-width-bannner-item col-lg-6 col-md-12 col-12">
-                            <a href="search.php">   <div class="slide"><img src="/ceylonfarmercom/ceylonfarmercom/client\img\slide6.jpg" style="width: 100%; height: 100%;"></div>
+                            <a href="gift.php">   <div class="slide">
+                                <img src="/ceylonfarmercom/ceylonfarmercom/client\img\slide6.jpg" style="width: 100%; height: 100%;"></div>
                     </a>
                             </div>
                         </div>
@@ -95,11 +96,10 @@ session_start();
                         <div class="switcher-container col-md-10 col-12 offset-md-1">
                             <div class="switcher">
                                 <div class="switcher-controls-container">
-                                <button type="submit" class="btn btn-success ClickCheck" id="Create " name="but_prev"> <i class="fa fa-arrow-left"></i></button>
-
-                                    <div class="switcher-control-nexus switcher-control-active">Nexus Deals</div>
+                                <!-- <button type="submit" class="btn btn-success ClickCheck" id="Create " name="but_prev"> <i class="fa fa-arrow-left"></i></button> -->
+                                <div class="switcher-control-nexus switcher-control-active">Nexus Deals</div>
                                     <div class="switcher-control-keells">GIT Lanka Deals</div>
-                                    <button type="submit" class="btn btn-success ClickCheck" id="Create " name="but_prev"> <i class="fa fa-arrow-right"></i></button>
+                                    <!-- <button type="submit" class="btn btn-success ClickCheck" id="Create " name="but_prev"> <i class="fa fa-arrow-right"></i></button> -->
 
                                    </div>
                             </div>
@@ -146,7 +146,8 @@ session_start();
                                                     <div class="product-card-original-price"><?php echo $sell_price; ?></div>
                                                     <div class="product-card-final-price">Rs 138.00 / Unit</div>
                                                 </div>
-                                                <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
+                                                <div class="product-card-button-container col-md-12"><button type="button" onclick="display()" class="product-card-button-add btn btn-primary btn-block">
+                                                    <i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                             </div>
                                         </div>
                                     </div>
@@ -163,8 +164,10 @@ session_start();
                                 </div>
                                 <div class="switcher-main-button-holder row">
                                     <div class="input-group">
-                                        <div class="btn-full"><button id="deals_view_all_nexus_btn" class="btn-inside
-   new-btn-sm " type="button"> View All Nexus Deals</button>
+                                        <div class="btn-full">
+                                        <a href="deals.php" class="btn-inside new-btn-sm ">View All Nexus Deals</a>
+
+
                                             <div class="input-group-append">
                                                 <div class="input-group-text append"><i class="fas fa-angle-right"></i></div>
                                             </div>
@@ -217,7 +220,9 @@ session_start();
                                                     <div class="product-card-price-container col-md-12">
                                                         <div class="product-card-final-price"><?php  echo $sell_price; ?></div>
                                                     </div>
-                                                    <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
+                                                    <div class="product-card-button-container col-md-12">
+                                                        <button type="button" class="product-card-button-add btn btn-primary btn-block" onclick="display()">
+                                                        <i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -231,7 +236,7 @@ session_start();
                             <div class="row" style="margin: 0px; padding-bottom: 1.5625rem;">
                                 <div class="col-md-10 col-12 offset-md-1">
                                     <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-5 row">
-                                        <div class="col" style="padding-bottom: 15px;">
+                                        <!-- <div class="col" style="padding-bottom: 15px;">
                                             <div class="product-card-container">
                                                 <div class="row">
                                                     <div class="product-card-image-container col-md-12"><img class="img-fluid" src="https://essstr.blob.core.windows.net/essimg/350x/Small/Pic952001.jpg"></div>
@@ -239,7 +244,9 @@ session_start();
                                                     <div class="product-card-price-container col-md-12">
                                                         <div class="product-card-final-price">Rs 65.00 / Unit</div>
                                                     </div>
-                                                    <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
+                                                    <div class="product-card-button-container col-md-12">
+                                                        <button type="button" class="product-card-button-add btn btn-primary btn-block" onclick="display()">
+                                                        <i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -290,7 +297,7 @@ session_start();
                                                     <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -334,7 +341,6 @@ session_start();
                                             $sell_price= $row2['sell_price'];   
                                             //  echo $sell_price."<br>"; 
                                               $product_id= $row2['product_id'];   
-                                        
                                               // echo $product_id."<br>"; 
                                         ?>
 
@@ -347,7 +353,9 @@ session_start();
                                         <div class="product-card-price-container col-md-12">
                                             <div class="product-card-final-price"><?php echo $sell_price; ?></div>
                                         </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
+                                        <div class="product-card-button-container col-md-12">
+                                            <button type="button" class="product-card-button-add btn btn-primary btn-block" onclick="display()>
+                                            <i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -500,4 +508,28 @@ debugger;
 
 	});
 });
+
+function display() {
+               //alert("Hello World")
+               var myvar='<?php echo $email;?>';
+             //  alert(myvar);
+               if(myvar== 'guest')
+               {
+                var response = confirm('Do you want to login as guest?');
+                    if ( response == true )
+                    {
+                        window.location = "login.php";
+
+                  //  alert("A  fine choice!")
+                    }else{
+                    alert("For order you have to login")
+                    }
+               }
+               else{
+                
+                alert("Add!")
+               }
+            }
+         
+    
 </script>

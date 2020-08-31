@@ -85,9 +85,15 @@ if($result === FALSE)
 die("Query Failed!".mysqli_error().$result);
 }
 while($row=mysqli_fetch_assoc($result))
-	{
+{
 $method=$row['method'];
 $city=$row['city'];
+//echo "<script>alert('$city')</script>"; 
+if($city == '')
+{
+
+$city=$row['state'];
+}
 //echo "<script>alert('$id')</script>"; 
         }
     }

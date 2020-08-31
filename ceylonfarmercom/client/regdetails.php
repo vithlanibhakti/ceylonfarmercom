@@ -92,7 +92,7 @@ $query  = "SELECT id, city FROM city ";
 $result = mysqli_query($con, $query);
 
 ?>
-<select name="City" class="form-control" >
+<select name="City" class="form-control" required>
 	<option>Select City</option>
 	<?php while($row = mysqli_fetch_array($result)) { ?>
 	<option value=<?php echo $row['city']?>><?php echo $row['city']?></option>
@@ -106,7 +106,8 @@ $result = mysqli_query($con, $query);
                 <div class="row-view row">
                     <div class="col-5 col-5-view">
                         <div class="form-group"><label for="Email" class="white">Email</label>
-                          <input id="Email" name="Email" placeholder="Email" type="email" class="form-control" value=""></div><span class="form-text text-muted d-none"> Email is required.</span><span class="form-text text-muted d-none"> Invalid email address.</span></div>
+                          <input id="Email" name="Email" placeholder="Email" type="email" class="form-control" required value="">
+                        </div><span class="form-text text-muted d-none"> Email is required.</span><span class="form-text text-muted d-none"> Invalid email address.</span></div>
                           <div class="col-5 col-5-view">
                         <div class="form-group"><label for="username" class="white">Username</label>
                           <input id="username" name="username" placeholder="username" type="text" class="form-control" value=""></div><span class="form-text text-muted d-none"> Email is required.</span><span class="form-text text-muted d-none"> Invalid username address.</span></div>
@@ -116,14 +117,14 @@ $result = mysqli_query($con, $query);
                     <div class="col-5 col-5-view">
                         <div class="form-group"><label for="Confirm Password" class="white">Confirm Password</label>
                             <div class="input-group" style="margin-bottom: 0px;">
-                            <input id="registerConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" type="password" class="form-control" value="">
+                            <input id="registerConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" type="password" class="form-control" value="" required>
                             <a href="javascript:myFunction();"><i id="register_cpw_visible_icon" class="fas fa-eye-slash"></i>
                             </a></div>
                         </div><span class="form-text text-muted d-none"> Confirm password is required.</span><span class="form-text text-muted d-none"> Confirm password does not match</span></div>
                     <div class="col-5 col-5-view">
                         <div class="form-group"><label for="Password" class="white">Password</label>
                             <div class="input-group" style="margin-bottom: 0px;">
-                            <input id="registerPassword" name="Password" placeholder="Password" type="password" class="form-control" value="">
+                            <input id="registerPassword" name="Password" placeholder="Password" type="password" class="form-control" value="" required>
                             <a href="javascript:myFunction1();"><i id="register_pw_visible_icon" class="fas fa-eye-slash"></i></a></div>
                         </div><span class="form-text text-muted"></span></div>
                 </div>
@@ -141,7 +142,7 @@ $result = mysqli_query($con, $query);
                                     <div class="accordion">
                                         <div>
                                             <div class="border-0 pt-0 pb-0 card-header" for="checkbox_0" style="background: transparent none repeat scroll 0% 0%;">
-                                            <input name="checkbox" id="checkbox_0"  type="checkbox" class="custom-control-input" value="agreed"><label for="checkbox_0" class="custom-control-label white condition-label">I agree to the terms and conditions</label></div>
+                                            <input name="checkbox" id="checkbox_0"  type="checkbox" class="custom-control-input" value="agreed" ><label for="checkbox_0" class="custom-control-label white condition-label">I agree to the terms and conditions</label></div>
                                             <div for="checkbox_0" class="collapse">
                                                 <div class="card-body">
                                                     <div class="row">

@@ -31,7 +31,7 @@
                         <div class="col"><img src="/ceylonfarmercom/ceylonfarmercom/client/img/websitelogo.png" class="img-fluid"> <br> <br><span class="small-title white"><b>Log In</b></span><br> <br><span class="description white">Shopped with us before? Log in with your details</span></div>
 
                         <hr><span class="description white">New member?</span><br>
-                        <a href="registration.html" class="new-btn new-btn-primary  mb-3" style="margin-right: auto;"> Click here to register</a>
+                        <a href="regdetails.php" class="new-btn new-btn-primary  mb-3" style="margin-right: auto;"> Click here to register</a>
                         <span class="description white">Have trouble logging in? Call us on <a href="tel:+940112303500" style="color: rgb(100, 191, 71);">0112303500</a> (Daily operating hours 8.00a.m to 8.00p.m)</span>
 
 
@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="form-group col"><label for="UserName" class="black">Email</label>
                                     <div class="input-group">
-                                        <input name="UserName" placeholder="Email" type="email" class="form-control set-height-55" required>
+                                        <input id="UserName" name="UserName" placeholder="Email" type="email" class="form-control set-height-55" required>
                                     </div>
                                     <span class="form-text text-muted col d-none"> Email is required.</span>
                                     <span class="form-text text-muted col d-none"> Invalid email address.</span>
@@ -65,6 +65,7 @@
                             <div class="form-group">
                                 <!-- <button class="new-btn new-btn-primary float-right " type="button"> Log In</button> -->
                                 <button class="new-btn new-btn-primary float-right " type="submit" name="submit">Login</button>
+                                <a href="#" onClick="autoFill(); return false;" class="new-btn new-btn-primary float-right "name="action"><span>Login As Guest</span> </a>
 </div>
                         </div>
                         <div class="col">
@@ -111,4 +112,11 @@ function myFunction3() {
   }
 
 }
+
+
+function autoFill() {
+    
+    document.getElementById('UserName').value = "guest@gmail.com";
+    document.getElementById('Password').value = "12345678";
+  }
 </script>

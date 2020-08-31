@@ -55,9 +55,11 @@
                 <div class="row">
                     <div class="form-group col d-flex">
                         <div><span class="description black no-margin">Delivery</span><br>
-                        <button class="shipping-button" id = "button1"><i class="fas fa-truck fa-4x"></i></button></div>
+                        <button class="shipping-button" id = "button1">
+							<i class="fas fa-truck fa-4x"></i></button></div>
                         <div><span class="description black no-margin">Pickup</span><br>
-                        <button class="shipping-button" id = "button2"><img src="/static/media/pickup-dark.21531254.svg" class="PickUpButtonImage"></button></div>
+                        <button class="shipping-button" id = "button2">
+							<img src="img/pickup.jpg" class="PickUpButtonImage"></button></div>
                     </div>
 				</div><br>
 				<form id="shipping_form" name="shipping_form" mehod="post" action="shippingadd.php">
@@ -68,16 +70,14 @@
                 <div class="content-container" style="margin-bottom: 2rem;">
                     <div class="row">
                         <div class="col-md-4 col-sm-12 col-12">
-                            <div class="form-group"><label for="SelectedStore">Select Outlet</label>
+                            <div class="form-group"><label for="SelectedStore">Select Pickup</label>
                                 <div>
                                 <?php
 include 'config.php';
 $result = mysqli_query($con,"SELECT * FROM city");
-?>
-                                <div class="form-group">
-		  
+?>                    <div class="form-group">
 		  <select class="form-control" id="Outlet" name="Outlet">
-		  <option value="">Select Outlet</option>
+		  <option value="">Select Pickup</option>
 		    <?php
 			while($row = mysqli_fetch_array($result)) {
 			?>
@@ -98,7 +98,7 @@ $result = mysqli_query($con,"SELECT * FROM city");
 											</div>
 											
 					<div class="col"></div>
-					<div class="row"><div class="form-group col d-flex align-items-center"><span class="form-text col"><i class="fas fa-info-circle"></i> A delivery fee of Rs.150 will apply to every online order delivered.</span></div></div>
+					
                 </div>
             </div>
         </div>
@@ -118,40 +118,23 @@ $result = mysqli_query($con, $query);
                 <div class="content-container" style="margin-bottom: 2rem;">
                     <div class="row">
                         <div class="col-md-4 col-sm-12 col-12">
-                            <div class="form-group"><label for="SelectedStore">Complaints</label>
-                                <div>
-		 
-			
-								<table width="45%"  cellspacing="0" cellpadding="0">
-			  <tr>
-			    <td width="75">Country</td>
-			    <td width="50">:</td>
-			    <td width="150">
-			    	<select name="country" onChange="getState(this.value)">
-						<option value="">Select Country</option>
+                           
+                <div class="form-group"><label for="SelectedStore">Country</label>
+                	<select name="country" onChange="getState(this.value)" class="form-control" required>
+						<option value="" >Select Country</option>
 						<?php while ($row = mysqli_fetch_array($result)) { ?>
 						<option value=<?php echo $row['id']?>><?php echo $row['country']?></option>
 						<?php } ?>
 					</select>
-				</td>
-			  </tr>
-			  <tr style="">
-			    <td>State</td>
-			    <td width="50">:</td>
-			    <td>
-			    	<div id="statediv">
-			    		<select name="state" >
+					<div class="form-group"><label for="SelectedStore"> State</label>
+                                <div>	<div id="statediv">
+			    		<select name="state" class="form-control" required>
 							<option>Select State</option>
 			        	</select>
 			        </div>
-			    </td>
-			  </tr>
-			  <tr style="">
-			    <td>City</td>
-			    <td width="50">:</td>
-			    <td>
-			    	<div id="citydiv">
-			    		<select name="city">
+					<div class="form-group"><label for="SelectedStore"> city</label>
+					<div id="citydiv">
+			    		<select name="city" class="form-control"  required>
 							<option>Select City</option>
 			        	</select>
 			        </div>
@@ -160,8 +143,14 @@ $result = mysqli_query($con, $query);
 			</table>
 		</center>
 								<div class="row">
-                    <div class="col"><button class="new-btn mr-2 no-right-radius" type="submit" style="background-color: rgb(81, 172, 55);"> Submit Feedback</button></div>
-                    <div class="col"></div>
+                    <div class="col">
+					<button class="new-btn  new-btn-primary " id="enter" disabled="true" type="submit" name="submit"> Submit Feedback</button>
+					<!-- <button class="new-btn mr-2 no-right-radius" type="submit" style="background-color: rgb(81, 172, 55);"> Submit Feedback</button> -->
+					</div>
+					<div class="col"></div>
+					<div class="row">
+						<div class="form-group col d-flex align-items-center"><span class="form-text col">
+						<i class="fas fa-info-circle"></i> A delivery fee of Rs.150 will apply to every online order delivered.</span></div></div>
                 </div>
             </div>
         </div>
@@ -200,7 +189,7 @@ function getState(countryId) {
 				// only if "OK"
 				if (req.status == 200) {						
 					document.getElementById('statediv').innerHTML=req.responseText;
-					document.getElementById('citydiv').innerHTML='<select name="city">'+
+					document.getElementById('citydiv').innerHTML='<select name="city" id="city" required>'+
 					'<option>Select City</option>'+
 			        '</select>';						
 				} else {
@@ -221,7 +210,8 @@ function getCity(countryId, stateId) {
 			if (req.readyState == 4) {
 				// only if "OK"
 				if (req.status == 200) {						
-					document.getElementById('citydiv').innerHTML = req.responseText;						
+					document.getElementById('citydiv').innerHTML = req.responseText;
+					 $("#enter").prop('disabled',false);//use prop()
 				} else {
 					alert("Problem while using XMLHTTP:\n" + req.statusText);
 				}
@@ -229,18 +219,20 @@ function getCity(countryId, stateId) {
 		}			
 		req.open("GET", strURL, true);
 		req.send(null);
+
 	}
+	
 }
          $(document).ready(function(){
         $("#mytable1").show();
      	$("#mytable2").hide();
 
-     	$("#button1").click(function(){
+     	$("#button2").click(function(){
      		$("#mytable2").hide();
      		$("#mytable1").show();
      	});
 
-     	$("#button2").click(function(){
+     	$("#button1").click(function(){
      		$("#mytable1").hide();
      		$("#mytable2").show();
             

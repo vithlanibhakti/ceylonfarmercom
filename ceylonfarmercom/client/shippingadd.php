@@ -17,7 +17,7 @@ $id=$row['id'];
 //echo "<script>alert('$id');</script>";
 }
 
- $sql="INSERT INTO `shipping` (`id`, `uid`, `method`, `city`, `state`, `country`) VALUES (NULL, '$id', 'delivery', '$Outlet', NULL, NULL)";
+ $sql="INSERT INTO `shipping` (`id`, `uid`, `method`, `city`, `state`, `country`) VALUES (NULL, '$id', 'pickup', '$Outlet', NULL, NULL)";
  if ($con->query($sql) === TRUE) {
  
     echo "<script>

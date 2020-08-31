@@ -10,6 +10,7 @@ $country=$_GET['country'];
 $state=$_GET['state'];
 $city=$_GET['city'];
 
+
 $query  = "SELECT city FROM city where id='$city'";
 $result = mysqli_query($con, $query);
 while($row=mysqli_fetch_assoc($result))
@@ -42,7 +43,7 @@ $id=$row['id'];
 //echo "<script>alert('$id');</script>";
 }
 
- $sql="INSERT INTO `shipping` (`id`, `uid`, `method`, `city`, `state`, `country`) VALUES (NULL, '$id', 'pickup', '$cityy', '$statename', '$countryy')";
+ $sql="INSERT INTO `shipping` (`id`, `uid`, `method`, `city`, `state`, `country`) VALUES (NULL, '$id', 'delivery', '$cityy', '$statename', '$countryy')";
  if ($con->query($sql) === TRUE) {
     echo "<script>
     alert('Record Inserted Sucessfully');

@@ -1,5 +1,8 @@
-<?php $session_value=(isset($_SESSION['UserName']))?$_SESSION['UserName']:''; ?>
+<?php include("header.php"); 
+//  $session_value=(isset($_SESSION['email']))?$_SESSION['email']:''; 
+//echo "<script>alert('$email')</script>"; 
 
+?>
 <?php  
 $idc=$_GET['id'];
 //echo $idc;
@@ -15,26 +18,28 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
 
     <meta charset="utf-8">
     <script>
-         <!--
             function display() {
                //alert("Hello World")
-               var myvar='<?php echo $session_value;?>';
-               alert(myvar);
-               if(myvar== '')
+               var myvar='<?php echo $email;?>';
+//               alert(myvar);
+               if(myvar== 'guest')
                {
                 var response = confirm('Do you want to login as guest?');
                     if ( response == true )
                     {
-                    alert("A fine choice!")
+                        window.location = "login.php";
+
+                  //  alert("A  fine choice!")
                     }else{
-                    alert("A not fine choice!")
+                    alert("For order you have to login")
                     }
                }
                else{
-                $UserName = $_SESSION['UserName'];
+                
+                alert("Add!")
                }
             }
-         //-->
+         
       </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -63,7 +68,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
     <link rel="stylesheet" href="/ceylonfarmercom/ceylonfarmercom/client/assets/css/login.css">
     <link rel="stylesheet" href="/ceylonfarmercom/ceylonfarmercom/client/assets/css/homepage.css">
 </head>
-<?php include("header.php"); ?>
+
 
     <div class="main-content-holder">
         <div>
@@ -180,12 +185,12 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
     </div>
     <?php include("footer.html"); ?>
     <script>
-function userValidate(){
-    alert("DD");
-    //    usrid = '<?=$_SESSION['UserName'];?>';
+// function userValidate(){
+//     alert("DD");
+//     //    usrid = '<?=$_SESSION['UserName'];?>';
     
-    //    if (UserName=="")
-    //          return true;
-    //    else return false;
-}
-</script>
+//     //    if (UserName=="")
+//     //          return true;
+//     //    else return false;
+// }         
+      </script>

@@ -274,7 +274,9 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
                                         <div class="product-card-price-container col-md-12">
                                             <div class="product-card-final-price"><?php echo $sell_price; ?></div>
                                         </div>
-                                        <div class="product-card-button-container col-md-12"><button type="button" class="product-card-button-add btn btn-primary btn-block"><i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
+                                        <div class="product-card-button-container col-md-12">
+                                            <button type="button" class="product-card-button-add btn btn-primary btn-block" onclick="display()">
+                                            <i class="fas fa-shopping-cart"></i>Add to Cart</button></div>
                                     </div>
                                 </div>
                             </div>
