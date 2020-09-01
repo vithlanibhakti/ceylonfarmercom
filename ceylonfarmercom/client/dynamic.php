@@ -1,8 +1,71 @@
-<?php include("header.php"); 
-//  $session_value=(isset($_SESSION['email']))?$_SESSION['email']:''; 
-//echo "<script>alert('$email')</script>"; 
+
+<?php 
+include("config.php");
+include("header.php");
+if(isset($_POST["add_to_cart"]))
+{
+	if(isset($_SESSION["shopping_cart"]))
+	{
+		$item_array_id = array_column($_SESSION["shopping_cart"], "p_id");
+		if(!in_array($_GET["p_id"], $item_array_id))
+		{
+			$count = count($_SESSION["shopping_cart"]);
+			$item_array = array(
+				'item_id'			=>	$_GET["p_id"],
+                'item_name'			=>	$_POST["hidden_name"],
+                'item_price'		=>	$_POST["hidden_price"],
+                'did'			=>	$_POST["did"],
+				'item_quantity'		=>	$_POST["quantity"]
+			);
+			$_SESSION["shopping_cart"][$count] = $item_array;
+            echo '<script>alert("Item Added successfully")</script>';
+            
+$idc=$_GET['did'];
+
+echo "<script type=\"text/javascript\">\n";
+echo "var foo = ${idc};\n";
+//echo "alert('value is:' + foo);\n";
+echo "</script>\n";
+echo '<script> window.location.href= "dynamic.php?id=" + foo</script>';
+
+            
+        }
+		else
+		{
+			echo '<script>alert("Item Already Added")</script>';
+		}
+	}
+	else
+	{
+		$item_array = array(
+			'item_id'			=>	$_GET["p_id"],
+            'item_name'			=>	$_POST["hidden_name"],
+            'did'			=>	$_POST["did"],
+			'item_price'		=>	$_POST["hidden_price"],
+			'item_quantity'		=>	$_POST["quantity"]
+		);
+		$_SESSION["shopping_cart"][0] = $item_array;
+	}
+}
+
+if(isset($_GET["action"]))
+{
+	if($_GET["action"] == "delete")
+	{
+		foreach($_SESSION["shopping_cart"] as $keys => $values)
+		{
+			if($values["item_id"] == $_GET["p_id"])
+			{
+				unset($_SESSION["shopping_cart"][$keys]);
+				echo '<script>alert("Item Removed")</script>';
+				echo '<script>window.location="home.php"</script>';
+			}
+		}
+	}
+}
 
 ?>
+
 <?php  
 $idc=$_GET['id'];
 //echo $idc;
@@ -42,6 +105,10 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
          
       </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Including our scripting file. -->
 
@@ -131,7 +198,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
                                 </div><span class="input-range__label input-range__label--max"><span class="input-range__label-container">5000</span></span>
                             </div><span class="price-range-text mt-3 d-flex"><strong>Price&nbsp;</strong> Rs. 0 - Rs. 5000</span></div>
                     </div>
-                    <div class="col-md-9 col-12">
+         <div class="col-md-9 col-12">
                         <div class="m-0 row-cols-2 row-cols-xs-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row">
                         <?php 
                         include 'config.php';
@@ -142,6 +209,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
                                         $p_name= $row1['p_name'];   
                                         $p_id= $row1['p_id'];   
                                         $p_image= $row1['p_image'];   
+                                        
                                         $result2 = mysqli_query($con,"SELECT  `product_id`, `sell_price` FROM `product_to_store` where `product_id` = $p_id ;");                                    
                                         while($row2 = mysqli_fetch_array($result2)) 
                                         {
@@ -150,7 +218,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
                                               $product_id= $row2['product_id'];   
                                           // echo $product_id."<br>"; 
                                         ?>
-
+<form method="post" action="dynamic.php?action=add&p_id=<?php echo $p_id; ?>&did=<?php echo $idc; ?>">
 <div class="col" style="padding-bottom: 15px;">
                                 <div class="product-card-container">
                                     <div class="row">
@@ -161,13 +229,18 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
                                             <div class="product-card-final-price"><?php echo $sell_price; ?></div>
                                         </div>
                                         <div class="product-card-button-container col-md-12">
-                                            <!-- <button type="button" class="product-card-button-add btn btn-primary btn-block"  onclick=" userValidate()"> -->
-                                            <input type="button" class="product-card-button-add btn btn-primary btn-block" onclick="display()" value="Add to Cart" />
-                                                <!-- <i class="fas fa-shopping-cart"></i> -->
-                                                </input></div>
-                                    </div>
-                                </div>
-                            </div>
+                                                <!-- <input type="button" onclick="sayHello()" value="Click" /> -->
+                                                <input type="text" name="quantity" value="1" class="form-control" />
+                        <input type="hidden" name="did" value="<?php echo $idc; ?>" class="form-control" />
+						<input type="hidden" name="hidden_name" value="<?php echo $p_name; ?>" />
+                        <input type="hidden" name="hidden_price" value="<?php echo $sell_price; ?>" />
+						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="product-card-button-add btn btn-primary btn-block" value="Add to Cart" />
+                                                <!-- <input type="button" class="product-card-button-add btn btn-primary btn-block" onclick="display()" value="Add to Cart" /> -->
+                                        </input></div>
+                                            </div>
+                                            </div>
+                  	</div>
+				</form>    
 
 <?php
                                         }
@@ -176,6 +249,55 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxyge
                                     }
                         
                         ?>
+
+<div style="clear:both"></div>
+			<br />
+			<h3>Order Details</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr>
+						<th width="40%">Item Name</th>
+						<th width="10%">Quantity</th>
+						<th width="20%">Price</th>
+						<th width="15%">Total</th>
+						<th width="5%">Action</th>
+					</tr>
+					<?php
+					if(!empty($_SESSION["shopping_cart"]))
+					{
+						$total = 0;
+						foreach($_SESSION["shopping_cart"] as $keys => $values)
+						{
+					?>
+					<tr>
+						<td><?php echo $values["item_name"]; ?></td>
+						<td><?php echo $values["item_quantity"]; ?></td>
+                        <td>$ <?php echo $values["item_price"]; ?></td>
+                        <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
+                        <td><a href="dynamic.php?action=delete&p_id=<?php echo $values["item_id"]; ?>">
+                        <span class="text-danger">Remove</span></a></td>
+					</tr>
+					<?php
+							$total = $total + ($values["item_quantity"] * $values["item_price"]);
+						}
+					?>
+					<tr>
+						<td colspan="3" align="right">Total</td>
+						<td align="right">$ <?php echo number_format($total, 2); ?></td>
+						<td></td>
+					</tr>
+					<?php
+					}
+					?>
+						
+				</table>
+			</div>
+		</div>
+		</div>
+	</div>
+	<br /> 
+	</body>
+</html>
 
                                                 </div>
                     </div>
