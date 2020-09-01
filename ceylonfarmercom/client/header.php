@@ -168,6 +168,10 @@ $city=$row['state'];
                                 <?php
 					if(!empty($_SESSION["shopping_cart"]))
 					{
+
+$a= count($_SESSION['shopping_cart']);
+//echo "<script>alert('$a')</script>"; 
+
 						$total = 0;
 						foreach($_SESSION["shopping_cart"] as $keys => $values)
 						{
@@ -176,12 +180,18 @@ $city=$row['state'];
 							$total = $total + ($values["item_quantity"] * $values["item_price"]);
 						}
 //echo number_format($total, 2); 
-					}
+                    }
+                    else{
+                        $a=0;
+                        $total =0;
+                    }
 					?>
 
-                                    <i class="fas fa-shopping-cart">
-                                        <span id="smart-checkout-count" class="badge">0</span>
-                                    </i> Rs. <?php echo number_format($total, 2);  ?></div>
+                                   <a href="orderdetails.php"> <i class="fas fa-shopping-cart">
+                                        <span id="smart-checkout-count" class="badge"><?php echo $a;?></span>
+                                    </i> Rs. <?php echo number_format($total, 2);  ?>
+                </a>
+                                </div>
                             </div>
                         </div>
                     </div>

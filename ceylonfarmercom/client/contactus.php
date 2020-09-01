@@ -87,8 +87,9 @@
             <button class="new-btn  new-btn-light-gray   no-left-radius " type="button" id = "button2">
                  <i class="fas fa-frown"> </i> Complaints</button></div>
                         </div><br><br>
-                        <form id="contact_form" name="contact_form" method="POST" actipm>
+                        
     <div  id = "mytable1">
+    <form id="shipping_form" name="shipping_form" mehod="post" action="conractcomment.php">
          <br/>
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 row" style="margin-left: 0.3rem;">
             <div class="container " style="margin-left: -0.02rem; max-width: 100%; background-color: rgb(245, 245, 240);">
@@ -108,7 +109,7 @@ $result = mysqli_query($con,"SELECT * FROM comments");
 		    <?php
 			while($row = mysqli_fetch_array($result)) {
 			?>
-				<option value="<?php echo $row["id"];?>"><?php echo $row["comments"];?></option>
+				<option value="<?php echo $row["comments"];?>"><?php echo $row["comments"];?></option>
 			<?php
 			}
 			?>
@@ -122,35 +123,35 @@ $result = mysqli_query($con,"SELECT * FROM comments");
                     <div class="col">
                         <div class="form-group">
                             <label for="FirstName">First Name</label>
-                            <input id="firstName" name="firstName" placeholder="First Name" type="text" class="form-control" maxlength="50" value="">
+                            <input id="firstName" name="firstName" placeholder="First Name" required type="text" class="form-control" maxlength="50" value="">
                             <span class="form-text text-muted"></span></div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="FirstName">Last Name</label>
-                            <input id="lastName" name="lastName" placeholder="Last Name" type="text" class="form-control" maxlength="50" value=""><span class="form-text text-muted"></span></div>
+                            <input id="lastName" name="lastName" placeholder="Last Name" required type="text" class="form-control" maxlength="50" value=""><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="AddressLine1">Address</label>
-                            <input id="address" name="address" placeholder="Address" type="text" class="form-control" maxlength="70" value=""><span class="form-text text-muted"></span></div>
+                            <input id="address" name="address" placeholder="Address" type="text" required class="form-control" maxlength="70" value=""><span class="form-text text-muted"></span></div>
                     </div>
                     <div class="col">
                         <div class="form-group"><label for="MobileNumber">Contact Number</label>
-                        <input id="mobileNumber" name="mobileNumber" placeholder="Contact Number" type="text" class="form-control" maxlength="13" value=""><span class="form-text text-muted"></span></div>
+                        <input id="mobileNumber" name="mobileNumber" placeholder="Contact Number" type="text" required class="form-control" maxlength="13" value=""><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="form-group"><label for="AddressLine1">Email</label><input id="email" name="email" placeholder="Email" type="text" class="form-control" maxlength="30" value=""><span class="form-text text-muted"></span></div>
+                        <div class="form-group"><label for="AddressLine1">Email</label><input id="email" required name="email" placeholder="Email" type="email" class="form-control" maxlength="30" value=""><span class="form-text text-muted"></span></div>
                     </div>
                     <div class="col"></div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" class="form-control-Message" maxlength="1000"></textarea><span class="form-text text-muted"></span></div>
+                        <div class="form-group"><label for="message">Message</label><textarea id="message" required name="message" class="form-control-Message" maxlength="1000"></textarea><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
@@ -182,8 +183,9 @@ $result = mysqli_query($con,"SELECT * FROM comments");
     </div>
 </div>
 <div></div>
+                                        </form>
     <div id = "mytable2" >
-         
+    <form id="shipping_form" name="shipping_form" mehod="post" action="contact2.php">
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 row" style="margin-left: 0.3rem;">
             <div class="container " style="margin-left: -0.02rem; max-width: 100%; background-color: rgb(245, 245, 240);">
                 <div class="content-container" style="margin-bottom: 2rem;">
@@ -197,12 +199,12 @@ $result = mysqli_query($con,"SELECT * FROM complaints");
 ?>
                                 <div class="form-group">
 		  
-		  <select class="form-control" id="category" name="category">
+		  <select class="form-control" id="category" name="category" required>
 		  <option value="">Select Complaints</option>
 		    <?php
 			while($row = mysqli_fetch_array($result)) {
 			?>
-				<option value="<?php echo $row["id"];?>"><?php echo $row["complaints"];?></option>
+				<option value="<?php echo $row["complaints"];?>"><?php echo $row["complaints"];?></option>
 			<?php
 			}
 			?>
@@ -214,34 +216,35 @@ $result = mysqli_query($con,"SELECT * FROM complaints");
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="form-group"><label for="FirstName">First Name</label><input id="firstName" name="firstName" placeholder="First Name" type="text" class="form-control" maxlength="50" value=""><span class="form-text text-muted"></span></div>
+                        <div class="form-group"><label for="FirstName">First Name</label>
+                        <input id="firstName" name="firstName" required placeholder="First Name" type="text" class="form-control" maxlength="50" value=""><span class="form-text text-muted"></span></div>
                     </div>
                     <div class="col">
                         <div class="form-group"><label for="FirstName">Last Name</label>
-                        <input id="lastName" name="lastName" placeholder="Last Name" type="text" class="form-control" maxlength="50" value=""><span class="form-text text-muted"></span></div>
+                        <input id="lastName" name="lastName" required placeholder="Last Name" type="text" class="form-control" maxlength="50" value=""><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group"><label for="AddressLine1">Address</label>
-                        <input id="address" name="address" placeholder="Address" type="text" class="form-control" maxlength="70" value=""><span class="form-text text-muted"></span></div>
+                        <input id="address" name="address" required placeholder="Address" type="text" class="form-control" maxlength="70" value=""><span class="form-text text-muted"></span></div>
                     </div>
                     <div class="col">
                         <div class="form-group"><label for="MobileNumber">Contact Number</label>
-                        <input id="mobileNumber" name="mobileNumber" placeholder="Contact Number" type="text" class="form-control" maxlength="13" value=""><span class="form-text text-muted"></span></div>
+                        <input id="mobileNumber" required name="mobileNumber" placeholder="Contact Number" type="text" class="form-control" maxlength="13" value=""><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group"><label for="AddressLine1">Email</label
-                        ><input id="email" name="email" placeholder="Email" type="text" class="form-control" maxlength="30" value=""><span class="form-text text-muted"></span></div>
+                        ><input id="email" name="email" placeholder="Email" type="email" class="form-control" maxlength="30" value="" required><span class="form-text text-muted"></span></div>
                     </div>
                     <div class="col"></div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group"><label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control-Message" maxlength="1000"></textarea><span class="form-text text-muted"></span></div>
+                        <textarea id="message" name="message" class="form-control-Message" maxlength="1000" required></textarea><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
@@ -261,8 +264,9 @@ $result = mysqli_query($con,"SELECT * FROM complaints");
                     <div class="col"></div>
                 </div>
                 <div class="row">
-                    <div class="col"><button class="new-btn  
-     mr-2 no-right-radius" type="button" style="background-color: rgb(81, 172, 55);"> Submit Feedback</button></div>
+                    <div class="col">
+                        
+                    <button class="new-btn mr-2 no-right-radius " type="submit" name="submit" style="background-color: rgb(81, 172, 55);">Submit Feedback</button>
                     <div class="col"></div>
                 </div>
             </div>

@@ -27,8 +27,9 @@ if(isset($_POST["add_to_cart"]))
 	else
 	{
 		$item_array = array(
-			'p_id'			=>	$_GET["p_id"],
-			'p_name'			=>	$_POST["hidden_name"],
+			'item_id'			=>	$_GET["p_id"],
+			'item_name'			=>	$_POST["hidden_name"],
+			'item_price'		=>	$_POST["hidden_price"],
 			'item_quantity'		=>	$_POST["quantity"]
 		);
 		$_SESSION["shopping_cart"][0] = $item_array;
