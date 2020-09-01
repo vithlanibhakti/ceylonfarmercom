@@ -104,7 +104,7 @@ $result = mysqli_query($con,"SELECT * FROM comments");
 ?>
                                 <div class="form-group">
 		  
-		  <select class="form-control" id="category" name="category">
+		  <select class="form-control" id="comments" name="comments">
 		  <option value="">Select Comments</option>
 		    <?php
 			while($row = mysqli_fetch_array($result)) {
@@ -151,7 +151,8 @@ $result = mysqli_query($con,"SELECT * FROM comments");
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="form-group"><label for="message">Message</label><textarea id="message" required name="message" class="form-control-Message" maxlength="1000"></textarea><span class="form-text text-muted"></span></div>
+                        <div class="form-group"><label for="message">Message</label>
+                        <textarea id="message" required name="message" class="form-control-Message" maxlength="1000"></textarea><span class="form-text text-muted"></span></div>
                     </div>
                 </div>
                 <div class="row">
@@ -159,18 +160,12 @@ $result = mysqli_query($con,"SELECT * FROM comments");
                     <div class="col">
                         <div class="form-group">
                             <div>
-                                <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LekXqsZAAAAAPfCMA2ES1zS3MIfS7pKdvQaHmvJ" data-theme="light" data-type="image" data-size="normal" data-badge="bottomright" data-tabindex="0">
-                                    <div style="width: 304px; height: 78px;">
-                                        <div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LekXqsZAAAAAPfCMA2ES1zS3MIfS7pKdvQaHmvJ&amp;co=aHR0cHM6Ly93d3cua2VlbGxzc3VwZXIuY29tOjQ0Mw..&amp;hl=en&amp;type=image&amp;v=TPiWapjoyMdQOtxLT9_b4n2W&amp;theme=light&amp;size=normal&amp;badge=bottomright&amp;cb=ibeiidjupuwx"
-                                                width="304" height="78" role="presentation" name="a-r7ygsmdxykt6" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div>
-                                        <textarea
-                                            id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
-                                    </div><iframe style="display: none;"></iframe></div>
+                               </div>
                             </div>
                         </div>
                     </div>
                     <div class="col"></div>
-                </div>
+                
                 <div class="row">
                     <div class="col">
                         <!-- <button class="new-btn mr-2 no-right-radius" type="button" style="background-color: rgb(81, 172, 55);"> Submit Feedback</button> -->
@@ -199,7 +194,7 @@ $result = mysqli_query($con,"SELECT * FROM complaints");
 ?>
                                 <div class="form-group">
 		  
-		  <select class="form-control" id="category" name="category" required>
+		  <select class="form-control" id="complaints" name="complaints" required>
 		  <option value="">Select Complaints</option>
 		    <?php
 			while($row = mysqli_fetch_array($result)) {
@@ -250,15 +245,7 @@ $result = mysqli_query($con,"SELECT * FROM complaints");
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <div>
-                                <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LekXqsZAAAAAPfCMA2ES1zS3MIfS7pKdvQaHmvJ" data-theme="light" data-type="image" data-size="normal" data-badge="bottomright" data-tabindex="0">
-                                    <div style="width: 304px; height: 78px;">
-                                        <div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LekXqsZAAAAAPfCMA2ES1zS3MIfS7pKdvQaHmvJ&amp;co=aHR0cHM6Ly93d3cua2VlbGxzc3VwZXIuY29tOjQ0Mw..&amp;hl=en&amp;type=image&amp;v=TPiWapjoyMdQOtxLT9_b4n2W&amp;theme=light&amp;size=normal&amp;badge=bottomright&amp;cb=ibeiidjupuwx"
-                                                width="304" height="78" role="presentation" name="a-r7ygsmdxykt6" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div>
-                                        <textarea
-                                            id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
-                                    </div><iframe style="display: none;"></iframe></div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col"></div>

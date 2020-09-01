@@ -6,19 +6,23 @@ if(isset($_GET['submit']))
      
         $firstName = $_GET['firstName'];
         $lastName = $_GET['lastName'];
-        $address = $_POST['address'];
+        $address = $_GET['address'];
         $mobileNumber =$_GET['mobileNumber'];
-		echo $firstName,$lastName,$mobileNumber,$address;
-// 	$fetch="SELECT * FROM users WHERE email='$UserName' AND Password='$Password' ";
-// 	 $result = mysqli_query($con,$fetch);
-// 	$count=mysqli_num_rows($result);
-//       echo $count;
-// 	 if ($count != "")
-// 	 {
-// 	 $_SESSION['UserName']=$UserName;
-//    header("Location: home.php");
-// 	 }
-// 	 else{
-// 	 header("Location: login.php");}
-    	}
+        $email =$_GET['email'];
+        $comments =$_GET['comments'];
+        $message =$_GET['message'];
+		//echo $firstName,$lastName,$mobileNumber,$address,$comments,$email,$message;
+
+$sql="INSERT INTO `users_comments`(`comments`, `firstname`, `lastname`, `address`, `mobilenumber`, `email`, `message`) VALUES
+ ('$comments','$firstName','$lastName','$address','$mobileNumber','$email','$message')";
+
+    }if(mysqli_query($con,$sql))
+    {
+        echo "<script>
+        alert('Record inserted Sucessfully');
+        window.location.href='contactus.php';
+        </script>";
+   } else{
+   echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+   }
     ?>
